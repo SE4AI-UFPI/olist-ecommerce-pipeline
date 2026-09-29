@@ -60,7 +60,7 @@ LOGGING:
 # override these values, same convention as MLFLOW below.
 DATABASE:
   host: "localhost"
-  port: 5432
+  port: 5434
   name: "olist_dw"
   user: "airflow"
   password: "airflow"

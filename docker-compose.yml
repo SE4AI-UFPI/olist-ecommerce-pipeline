@@ -27,6 +27,8 @@ services:
       - ./models:/app/models
       - ./src:/app/src
       - ./config:/app/config
+      - ./mlflow.db:/app/mlflow.db
+      - ./mlruns:/app/mlruns
     environment:
       - PYTHONPATH=/app
       - JUPYTER_ENABLE_LAB=yes
@@ -34,7 +36,7 @@ services:
       - KAGGLE_KEY=${KAGGLE_KEY:-}
       - KAGGLE_API_TOKEN=${KAGGLE_API_TOKEN:-}
       - DW_HOST=${DW_HOST:-postgres}
-      - DW_PORT=${DW_PORT:-5432}
+      - DW_PORT=5432
       - DW_NAME=${DW_NAME:-olist_dw}
       - DW_USER=${DW_USER:-airflow}
       - DW_PASSWORD=${DW_PASSWORD:-airflow}
@@ -97,7 +99,7 @@ services:
       - KAGGLE_KEY=${KAGGLE_KEY:-}
       - KAGGLE_API_TOKEN=${KAGGLE_API_TOKEN:-}
       - DW_HOST=${DW_HOST:-postgres}
-      - DW_PORT=${DW_PORT:-5432}
+      - DW_PORT=5432
       - DW_NAME=${DW_NAME:-olist_dw}
       - DW_USER=${DW_USER:-airflow}
       - DW_PASSWORD=${DW_PASSWORD:-airflow}
@@ -129,7 +131,7 @@ services:
       - KAGGLE_KEY=${KAGGLE_KEY:-}
       - KAGGLE_API_TOKEN=${KAGGLE_API_TOKEN:-}
       - DW_HOST=${DW_HOST:-postgres}
-      - DW_PORT=${DW_PORT:-5432}
+      - DW_PORT=5432
       - DW_NAME=${DW_NAME:-olist_dw}
       - DW_USER=${DW_USER:-airflow}
       - DW_PASSWORD=${DW_PASSWORD:-airflow}
@@ -174,7 +176,7 @@ services:
     environment:
       - PYTHONPATH=/app
       - DW_HOST=${DW_HOST:-postgres}
-      - DW_PORT=${DW_PORT:-5432}
+      - DW_PORT=5432
       - DW_NAME=${DW_NAME:-olist_dw}
       - DW_USER=${DW_USER:-airflow}
       - DW_PASSWORD=${DW_PASSWORD:-airflow}
@@ -190,7 +192,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./postgres/init:/docker-entrypoint-initdb.d
     ports:
-      - "5432:5432"
+      - "${DW_PORT:-5434}:5432"
 
 volumes:
   postgres_data:
